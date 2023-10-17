@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { Verify } from 'crypto';
 
-test('User can login', async ({ page }) => {
+test('User can login to wolftech news', async ({ page }) => {
   await page.goto('https://news2.wolftech.no/');
 
   // Expect a Header Login.
@@ -15,7 +15,9 @@ test('User can login', async ({ page }) => {
   const passwordInput = await page.getByPlaceholder('Password')
   await passwordInput.fill('BdCheck88i')
 
-  //Verify login
+  // Click login button
   await page.getByRole('button', { name: 'Login' }).click();
+  
+  //Verify login
   await expect(page.getByLabel('Go to Dashboard')).toBeVisible({ timeout: 12000 });
 });
